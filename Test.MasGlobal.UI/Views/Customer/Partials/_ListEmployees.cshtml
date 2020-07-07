@@ -1,0 +1,38 @@
+﻿@model  List<Test.MasGlobal.Common.DTO.EmployeeAPIResponse>
+
+@if (Model == null || Model.Count == 0)
+{
+    <div class="col-12 title">
+        <h2>There are no employees with the id value</h2>
+    </div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Contract Type</th>
+                <th>Role Name</th>
+                <th>Role Description</th>
+                <th>Salary</th>
+                <th>Annual Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.ContractTypeName</td>
+                    <td>@item.RoleName</td>
+                    <td>@item.RoleDescription</td>
+                    <td>@item.Salary</td>
+                    <td>@item.AnnualSalary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

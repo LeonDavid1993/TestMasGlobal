@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Get customers";
+}
+
+@using (Ajax.BeginForm("Index", "Customer", new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "divEmployees",
+    InsertionMode = InsertionMode.Replace,
+    OnBegin = "return(validate())"
+
+},
+ new { id = "FormEmployees", name = "FormEmployees" }
+ ))
+{
+    <div class="col-12 title">
+        <h2>Get the employees!</h2>
+    </div>
+    <span></span>
+    <div class="form-group">
+        <label for="Id">Id:</label>
+        <input type="text" maxlength="7" class="form-control" id="Id" name="Id"><span id="messageId" class="invalid-feedback"></span>
+    </div>
+    <button type="submit" class="btn bg-primary">Get employees</button>
+}
+<br />
+<div id="divEmployees"></div>
+
+<script type="text/javascript">
+
+    function allNumeric(inputtxt) {
+        var numbers = /^[0-9]+$/;
+
+        if (inputtxt.match(numbers) || (inputtxt === ""))
+            return true;
+        else
+            return false;
+    }
+
+    function validate() {
+        var returnValue = true;
+
+        var objValId = $("#Id");
+        if (!allNumeric(document.FormEmployees.Id.value)) {
+            objValId.addClass("is-invalid");
+            document.getElementById("messageId").textContent = "El campo es debe ser númerico";
+            returnValue = false;
+        }
+        else {
+            objValId.removeClass("is-invalid");
+            document.getElementById("messageId").textContent = "";
+        }
+
+        return (returnValue);
+    }
+</script>
